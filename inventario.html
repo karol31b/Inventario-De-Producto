@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario - Productos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container" id="inventarioPage">
+        <!-- Barra superior -->
+        <header class="header-inventario">
+            <h1>Mi Inventario</h1>
+            <div class="header-derecha">
+                <span id="nombreUsuario"></span>
+                <button id="btnLogout" class="btn btn-logout">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <main class="inventario-main">
+            <!-- Sección del formulario -->
+            <section class="seccion-form">
+                <h2 id="tituloForm">Nuevo Producto</h2>
+                <div id="msgForm"></div>
+                <form id="formProducto">
+                    <div class="campo">
+                        <label for="prodNombre">Nombre *</label>
+                        <input type="text" id="prodNombre" required placeholder="Nombre del producto">
+                    </div>
+                    <div class="campo">
+                        <label for="prodDescripcion">Descripción</label>
+                        <textarea id="prodDescripcion" rows="2" placeholder="Descripción del producto"></textarea>
+                    </div>
+                    <div class="campo-row">
+                        <div class="campo">
+                            <label for="prodPrecio">Precio *</label>
+                            <input type="number" id="prodPrecio" required step="0.01" min="0" placeholder="0.00">
+                        </div>
+                        <div class="campo">
+                            <label for="prodCantidad">Cantidad *</label>
+                            <input type="number" id="prodCantidad" required min="0" step="1" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="campo">
+                        <label for="prodImagen">URL de Imagen (opcional)</label>
+                        <input type="url" id="prodImagen" placeholder="https://ejemplo.com/imagen.jpg">
+                    </div>
+                    <div class="campo-botones">
+                        <button type="submit" id="btnSubmitForm" class="btn btn-principal">Guardar Producto</button>
+                        <button type="button" id="btnCancelarEdicion" class="btn btn-secundario oculto">Cancelar</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Sección de listado -->
+            <section class="seccion-listado">
+                <div class="listado-header">
+                    <h2>Productos Registrados</h2>
+                    <div class="vista-botones">
+                        <button id="btnVistaTabla" class="btn btn-vista activo">Tabla</button>
+                        <button id="btnVistaTarjetas" class="btn btn-vista">Tarjetas</button>
+                    </div>
+                </div>
+
+                <!-- Vista tabla -->
+                <div id="contenedorTabla">
+                    <table class="tabla-productos">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Imagen</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyProductos">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Vista tarjetas -->
+                <div id="contenedorTarjetas" class="contenedor-tarjetas oculto">
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Sistema de Inventario &copy; 2025</p>
+        </footer>
+    </div>
+
+    <!-- Supabase JS desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/crud.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
